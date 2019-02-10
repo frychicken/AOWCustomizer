@@ -18,6 +18,17 @@ Frychicken: to write log
 
 I know this is not the most efficient way
 
+
+### How?
+
+1. Download customizer (from AOW or [here](https://github.com/frychicken/art-IF-icial-Intelligence/blob/master/Customizer/AOWCus.jar?raw=true))
+
+2. Run; first, select your .java file (you may have to write it using the template below); second, select your AOW.jar
+
+3. IF you use Soundfx.java and/or Frychicken.java, and if you know what you are doing, type in the command to compile
+
+4. Profit (maybe not)
+
 #### Template for Execut.java
 
 ```java
