@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.filechooser.FileSystemView;
 
 public class Doit {
@@ -33,7 +34,10 @@ public class Doit {
 			| UnsupportedLookAndFeelException e1) {
 		e1.printStackTrace();
 	}
+	  FileNameExtensionFilter filter = new FileNameExtensionFilter("java", "java");
 		JFileChooser jfc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		  jfc.setFileFilter(filter); 
+
         jfc.setDialogTitle("Select a .java file"); 
 		int returnValue = jfc.showOpenDialog(null);
 		if (returnValue == JFileChooser.APPROVE_OPTION) {
@@ -42,8 +46,11 @@ public class Doit {
 		}
 		
 		Thread.sleep(2000);
+		  FileNameExtensionFilter filter2 = new FileNameExtensionFilter("jar", "jar");
 
 		JFileChooser jfc2 = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+		  jfc2.setFileFilter(filter2); 
+
         jfc2.setDialogTitle("Select your AOW.jar file"); 
 		int returnValue2 = jfc2.showOpenDialog(null);
 		if (returnValue2 == JFileChooser.APPROVE_OPTION) {
