@@ -14,16 +14,23 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.filechooser.FileSystemView;
+
 public class Doit {
 	static JTextField txtboc;
 	private static Frame bobJFrame;
   public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
 	 String jaf ="";
+	 String jaf5="";
 String jaf2="";
 String jaf1="";
 		FileDialog fd = new FileDialog(bobJFrame, "Choose a .java", FileDialog.LOAD);
