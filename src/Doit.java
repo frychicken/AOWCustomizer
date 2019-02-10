@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.FileDialog;
@@ -16,16 +17,25 @@ import java.util.HashMap;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-public class Doit {
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
+public class Doit extends JFrame implements ActionListener{
+
+	private static final long serialVersionUID = 1L;
 	static JTextField txtboc;
 	private static Frame bobJFrame;
-  public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException {
+	static JFrame frame;
+  public static void main(String[] args) throws IOException, InterruptedException, URISyntaxException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 	 String jaf ="";
 String jaf2="";
 String jaf1="";
+	UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+
 		FileDialog fd = new FileDialog(bobJFrame, "Choose a .java", FileDialog.LOAD);
 		fd.setDirectory("");
 		fd.setFile("*.java");
@@ -33,7 +43,9 @@ String jaf1="";
 		fd.setVisible(true);
 	    jaf2 =fd.getDirectory();
 		jaf1 = fd.getFile();	 
-
+        if (jaf1 == null) {
+        	System.exit(0);
+        }
 		Thread.sleep(2000);
 		
 		FileDialog fd2 = new FileDialog(bobJFrame, "Choose a .jar", FileDialog.LOAD);
@@ -42,12 +54,14 @@ String jaf1="";
 		fd2.setFilenameFilter((dir, name) -> name.endsWith(".jar"));
 		fd2.setVisible(true);
 	    jaf =fd2.getDirectory();
-	    
+	    if (jaf == null) {
+        	System.exit(0);
+        }
         File f1 = new File(jaf2+jaf1);
 		File f2 = new File(jaf+"Execut.java");
 		f1.renameTo(f2);
 		
-		JFrame frame = new JFrame("Customizer");
+		frame = new JFrame("Customizer");
 
 		txtboc = new JTextField("javac Execut.java");  
 		JLabel lblLabel = new JLabel("Enter your command to compile (if you don't know, leave it as it is)");
@@ -107,7 +121,9 @@ String jaf1="";
 			}
 		});
 		
-		JButton  button = new JButton("Okay"); 
+		JButton  button = new JButton("Okay");
+		Doit loen = new Doit(); 
+		button.addActionListener(loen); 
 		JPanel panel = new JPanel(); 
 		panel.add(lblLabel);
 		panel.add(txtboc);
@@ -124,18 +140,34 @@ String jaf1="";
 
 		
   }
-  public void actionPerformed(ActionEvent e) throws InterruptedException { 	
+  public void actionPerformed(ActionEvent e) { 	
 	  String s = e.getActionCommand(); 
 		if (s.equals("Okay") ) { 
+			frame.setVisible(false);
 			  Runtime r= Runtime.getRuntime();
 				try {
 					r.exec(txtboc.getText());
-					Thread.sleep(3000);
+					try {
+						Thread.sleep(3000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					r.exec("jar uf AOW.jar Execut.class");
 					System.out.println("Done");
+					ChickenIsNotFood();
+					r.exec("java -jar AOW.jar");
+					System.exit(0);
 				} catch (IOException ez) {
 					ez.printStackTrace();
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
 		}
+  }
+  public int ChickenIsNotFood() throws Exception {
+		return JOptionPane.showConfirmDialog((Component) null, "Done",
+				"Done", JOptionPane.CLOSED_OPTION);
   }
 }
