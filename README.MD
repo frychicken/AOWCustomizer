@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/frychicken/AOWCustomizer.svg?branch=master)](https://travis-ci.org/frychicken/AOWCustomizer)
+
 ## For advanced user
 
 _**This is an experimental feature**_
